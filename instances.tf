@@ -20,8 +20,36 @@ resource "aws_instance" "instance1" {
     associate_public_ip_address = true 
     key_name = aws_key_pair.ssh_key.key_name
 
+    connection {
+        type = "ssh"
+        host =self.public_ip
+        user = "ec2-user"
+        private_key = file(var.private_key_location)
+    }
+    provisioner "file" {
+        source = "entry_script.sh"
+        destination = "/home/ec2-user/cp_script.sh"
 
-    user_data = file("entry_script.sh")
+        # connection {
+        #     type = "ssh"
+        #     host =anouther server .public_ip
+        #     user = "ec2-user"
+        #     private_key = file(var.private_key_location)
+        # }
+    }   
+    provisioner "remote-exec" {
+        # inline = [ 
+        #     "export ENV=demo1",
+        #     "mkdir hello_dir"
+        #  ]
+        script = file("/home/ec2-user/cp_script.sh")
+    }
+     provisioner "local-exec" {
+        command = "echo ${self.public_ip} > out.txt"
+     }
+
+
+    # user_data = file("entry_script.sh")
 
     tags = {
       Name: "${var.prefix}-server"
