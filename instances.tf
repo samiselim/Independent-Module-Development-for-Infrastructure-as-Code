@@ -38,11 +38,11 @@ resource "aws_instance" "instance1" {
         # }
     }   
     provisioner "remote-exec" {
-        # inline = [ 
-        #     "export ENV=demo1",
-        #     "mkdir hello_dir"
-        #  ]
-        script = file("/home/ec2-user/cp_script.sh")
+        inline = [ 
+            "export ENV=demo1",
+            "mkdir hello_dir"
+         ]
+        # script = file("cp_script.sh")
     }
      provisioner "local-exec" {
         command = "echo ${self.public_ip} > out.txt"
