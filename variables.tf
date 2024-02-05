@@ -4,18 +4,8 @@ variable "region" {}
 variable "zone" {}
 variable "ssh_ip" {}
 variable "public_key_location" {}
-
-
-variable "instance_type" {
-    default = "t2.micro"
-}
-variable "prefix" {
-    default = "demo1"
-}
-
-variable "vpc_cidr_block" {
-    default = "10.0.0.0/16"
-}
-variable "subnet_cidr_block" {
-    default = "10.0.0.0/24"
-}
+variable "image_name" {}
+variable "instance_type" {}
+variable "prefix" {}
+variable "vpc_cidr_block" {}
+variable "subnet_cidr_block" {}

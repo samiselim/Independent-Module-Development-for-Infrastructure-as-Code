@@ -1,7 +1,7 @@
 output "image" {
-    value = data.aws_ami.aws_image_latest.name
+    value = module.web_server.image_name
 }
 
 output "public_ip" {
-    value = aws_instance.instance1.public_ip
+    value = module.web_server.instance_object.public_ip
 }
