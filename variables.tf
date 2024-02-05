@@ -5,6 +5,7 @@ variable "zone" {}
 variable "ssh_ip" {}
 variable "public_key_location" {}
 
+
 variable "instance_type" {
     default = "t2.micro"
 }

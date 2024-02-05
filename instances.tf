@@ -13,7 +13,7 @@ resource "aws_instance" "instance1" {
     ami = data.aws_ami.aws_image_latest.id
     instance_type = var.instance_type
 
-    subnet_id = aws_subnet.subnet1.id
+    subnet_id = module.subnet1_module.subnet_object.id # reference the module called subnet1_module 
     vpc_security_group_ids = [aws_security_group.security_group1.id]
     availability_zone = var.zone
 
@@ -34,10 +34,3 @@ resource "aws_key_pair" "ssh_key" {
 }
 
 
-output "image" {
-    value = data.aws_ami.aws_image_latest.name
-}
-
-output "public_ip" {
-    value = aws_instance.instance1.public_ip
-}
