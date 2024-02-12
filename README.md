@@ -1,4 +1,4 @@
-# aws_terraform_project
+# Independent Module Development for Infrastructure as Code
 
 This project is creating an infrastructure at AWS cloud using terraform tool 
 * creating my own modules [webServer module - subnet module] and using those to create nginx server  
